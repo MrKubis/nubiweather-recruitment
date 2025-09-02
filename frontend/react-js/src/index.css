@@ -19,7 +19,6 @@
 
 body {
   margin: 0;
-  display: flex;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
@@ -35,4 +34,36 @@ h1 {
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+}
+
+.container-weather-info{
+  
+  background-color: rgb(81, 81, 81, 0.298);
+  border-image: linear-gradient(to right, #009E5B 0%, #0081A3 100%) 1;
+  border-top-width: 4px;
+  border-style: solid;
+  padding: 5px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 5px;
+  margin-right: 5px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 20%;
+  height: 20%;
+}
+
+.container-weather-panels{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.text-city-name{
+  font-size: 5rem;
+  text-align: center;
+  margin-bottom: 10px;
 }
