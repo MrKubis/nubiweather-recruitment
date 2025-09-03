@@ -12,7 +12,7 @@ import requests
 
 API_KEY = '6590bd6f6df5422e90a154646250209'
 @api_view(['GET'])
-def getCurrentWeather(request):
+def getRealtimeWeather(request):
     if request.method == 'GET':
         body =  loads(request.body)
         city = body.get("city")
@@ -32,7 +32,7 @@ def getCurrentWeather(request):
         return Response(serializer.data)
     
 @api_view(['GET'])
-def saveCurrentWeather(request):
+def saveRealtimeWeather(request):
     if request.method == 'GET':
         body =  loads(request.body)
         city = body.get("city")
@@ -59,3 +59,15 @@ def saveCurrentWeather(request):
             return Response(serializer.data)
         return Response(serializer.errors, status=400)
 
+
+@api_view(['GET'])
+def getForecastWeather(request):
+    body = loads(request.body)
+    city = body.get('city')
+    days = body.get('days')
+    url = 'http://api.weatherapi.com/v1/forecast.json?key='+API_KEY+'&q='+city+'&days='+days+'&aqi=no&alerts=no'
+    return Response(city+","+days)
+
+@api_view(['GET'])
+def getForecastWeather(request):
+    pass
