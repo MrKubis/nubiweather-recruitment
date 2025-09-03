@@ -30,6 +30,7 @@ def getCurrentWeather(request):
             )
         serializer = WeatherSerializer(weather)
         return Response(serializer.data)
+    
 @api_view(['GET'])
 def saveCurrentWeather(request):
     if request.method == 'GET':
@@ -47,8 +48,12 @@ def saveCurrentWeather(request):
             "temp_c": data_current.get("temp_c"),
             "description": data_current_condition.get("text")
             }
-
-        serializer = WeatherSerializer(data = weather_data)
+        weather = Weather(
+            icon = data_current_condition.get("icon"),
+            temp_c = data_current.get("temp_c"),
+            description = data_current_condition.get("text")
+            )
+        serializer = WeatherSerializer(data = weather)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
