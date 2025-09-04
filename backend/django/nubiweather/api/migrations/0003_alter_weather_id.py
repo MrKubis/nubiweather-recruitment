@@ -11,9 +11,13 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AlterField(
+        migrations.RemoveField(
+            model_name='weather',
+            name="id",
+        ),
+        migrations.AddField(
             model_name='weather',
             name='id',
-            field=models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False, unique=True),
+            field=models.UUIDField(default=uuid.uuid4, primary_key=True, serialize=False),
         ),
     ]
