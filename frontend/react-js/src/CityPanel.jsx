@@ -8,15 +8,15 @@ function CityPanel(props){
     const dateString = date.getFullYear() + "-" + (date.getMonth() + 2) + "-" + date.getDay()
         
     const apiKey = '6590bd6f6df5422e90a154646250209'
-    const URL = 'http://api.weatherapi.com/v1/forecast.json?key='+ apiKey + '&q=' + props.city + '&days=4&aqi=no&alerts=no'
-
+    const URL = 'http://127.0.0.1:8000/api/forecast-weather/?city='+props.city+'&days=4'
     useEffect(() => {
         fetch(URL)
         .then(res => {
             return res.json();
         })
         .then(data => {
-            setForecastdays(data.forecast.forecastday);
+            console.log(data)
+            setForecastdays(data);
         })            
         
     },[]);
@@ -30,7 +30,7 @@ function CityPanel(props){
                 {forecastdays && forecastdays.map((forecastday) =>
                 {
                     console.log(forecastday);
-                    return <WeatherForecaster key = {forecastday.date} date = {forecastday.date} temp = {forecastday.day.avgtemp_c} text = {forecastday.day.condition.text} icon = {forecastday.day.condition.icon}/>;
+                    return <WeatherForecaster key = {forecastday.id} date = {forecastday.date} temp = {forecastday.temp_c} text = {forecastday.description} icon = {forecastday.icon}/>;
                 }
                 )}
             </div>
